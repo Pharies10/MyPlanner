@@ -3,13 +3,17 @@
  */
 package software_masters.business_planner;
 
+import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
+
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.RemoteException;
@@ -350,11 +354,14 @@ public class Server implements ServerInterface, Serializable
 	
 	
 	
-	
-	
-	
-	
-	
+
+	/**
+	 * 
+	 * @param dept
+	 * 
+	 * will be called when plan is updated and saves entire department
+	 * 
+	 */
 	public void save(Department dept)
 	{
 		String fileName = dept.getDepartmentName();
@@ -378,5 +385,48 @@ public class Server implements ServerInterface, Serializable
 	}
 
 	
+	
+	/**
+	 * 
+	 * @param names
+	 * 
+	 * loads the plans at start
+	 * will not be able to do is the dept list is full
+	 * 
+	 */
+	public void load(ArrayList<String> names)
+	{
+		boolean empty = dept.isEmpty();
+		if(empty == false)
+		{
+			return;
+		}
+		else
+		{
+			for(int i = 0; i < names.size(); i++)
+			{
+				String fileName = names.get(i);
+				
+				XMLDecoder decoder=null;
+				
+				try 
+				{
+					decoder=new XMLDecoder(new BufferedInputStream(new FileInputStream(fileName)));
+				} 
+					catch (FileNotFoundException e) 
+				{
+						System.out.println("ERROR: File dvd.xml not found");
+				}
+				Department department = (Department)decoder.readObject();
+				
+				dept.add(department);
+				
+				
+			}
+
+			
+		}
+			
+	}
 	
 }
