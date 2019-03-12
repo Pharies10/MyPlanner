@@ -3,6 +3,10 @@
  */
 package software_masters.business_planner;
 
+import java.beans.XMLEncoder;
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
@@ -44,8 +48,10 @@ public class Server implements ServerInterface, Serializable
 	 * if it does return a true
 	 * any other case return false
 	 * 
-	 * used for login and a check for certain actions that only admins can perform
+	 * used for login 
+	 * used for a check for certain actions that only admins can perform
 	 * used to identify a user within the admin hash
+	 * 
 	 */
 	private boolean adminAccess(String username, String password)
 	{
@@ -190,6 +196,8 @@ public class Server implements ServerInterface, Serializable
 		}
 		
 		User user = new User(name, userName, password, deptName, access); 
+		department.addUser(user);
+		
 		if(access == true)
 		{
 			boolean copy = checkAdmin(userName);
@@ -335,7 +343,38 @@ public class Server implements ServerInterface, Serializable
 		Department department = getDept(deptName);
 		
 		department.updatePlan(plan);
+		
+		save(department);
 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	public void save(Department dept)
+	{
+		String fileName = dept.getDepartmentName();
+		
+		XMLEncoder encoder=null;
+		try
+		{
+			encoder=new XMLEncoder(new BufferedOutputStream(new FileOutputStream(fileName)));
+		}
+		catch(FileNotFoundException fileNotFound)
+		{
+			System.out.println("ERROR: While Creating or Opening the File dvd.xml");
+		}
+		encoder.writeObject(dept);
+		encoder.close();
+		
+		
+		
+		
+		
 	}
 
 	

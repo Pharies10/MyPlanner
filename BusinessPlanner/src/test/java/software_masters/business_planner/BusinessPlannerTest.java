@@ -21,7 +21,7 @@ public class BusinessPlannerTest extends TestCase
 	 */
 	public void testVMOSA()
 	{
-		BusinessPlanner planner = new BusinessPlanner("VMOSA","myVMOSA");
+		BusinessPlanner planner = new BusinessPlanner("VMOSA","myVMOSA", true);
 
 		// this method loads template from xml
 		//planner.chooseTemplate("VMOSA", "myVMOSA");
@@ -59,7 +59,7 @@ public class BusinessPlannerTest extends TestCase
 	 */
 	public void testCentreAssessment()
 	{
-		BusinessPlanner planner = new BusinessPlanner("Centre_Assessment", "myCentre_Assessment");
+		BusinessPlanner planner = new BusinessPlanner("Centre_Assessment", "myCentre_Assessment", true);
 
 		// this method loads template from xml
 		//planner.chooseTemplate("Centre_Assessment", "myCentre_Assessment");
@@ -95,7 +95,7 @@ public class BusinessPlannerTest extends TestCase
 	 */
 	public void testOKR()
 	{
-		BusinessPlanner planner = new BusinessPlanner("OKR","myOKR");
+		BusinessPlanner planner = new BusinessPlanner("OKR","myOKR", true);
 
 		// this method loads template from xml
 		//planner.chooseTemplate("OKR", "myOKR");
