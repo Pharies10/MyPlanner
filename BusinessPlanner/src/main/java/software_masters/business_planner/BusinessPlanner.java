@@ -1,5 +1,7 @@
 package software_masters.business_planner;
 
+import java.io.Serializable;
+
 /**
  * This class handles user interaction with this application.
  * 
@@ -12,12 +14,31 @@ package software_masters.business_planner;
  * 
  */
 
-class BusinessPlanner
+class BusinessPlanner implements Serializable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	
 	private Template userTemplate;
 	private Template developerTemplate;
 	private TemplateSection current;
+	
+	
+	
+	/**
+	 * @param userTemplate
+	 * @param developerTemplate
+	 */
+	public BusinessPlanner(String developerTemplate, String userTemplate)
+	{
+		chooseTemplate(developerTemplate, userTemplate);
+	}
 
 	/**
 	 * Sets developerTemplate to the chosen XML file, clones developerTemplate to
@@ -27,7 +48,7 @@ class BusinessPlanner
 	 * @param templateName     of chosen developerTemplate XML file
 	 * @param userTemplateName name of userTemplate
 	 */
-	public void chooseTemplate(String templateName, String userTemplateName)
+	private void chooseTemplate(String templateName, String userTemplateName)
 	{
 		developerTemplate = Template.loadDeveloperTemplate(templateName);
 		userTemplate = Template.loadDeveloperTemplate(templateName);
@@ -118,6 +139,9 @@ class BusinessPlanner
 		}
 		return null;
 	}
+	
+
+	
 
 	/**
 	 * Allows user to navigate to parent of the currently accessed template section

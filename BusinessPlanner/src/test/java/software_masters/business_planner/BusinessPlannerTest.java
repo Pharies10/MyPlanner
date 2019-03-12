@@ -21,10 +21,10 @@ public class BusinessPlannerTest extends TestCase
 	 */
 	public void testVMOSA()
 	{
-		BusinessPlanner planner = new BusinessPlanner();
+		BusinessPlanner planner = new BusinessPlanner("VMOSA","myVMOSA");
 
 		// this method loads template from xml
-		planner.chooseTemplate("VMOSA", "myVMOSA");
+		//planner.chooseTemplate("VMOSA", "myVMOSA");
 
 		// tests adding an extra vision. should return null
 		Assert.assertNull(planner.getCurrent().deepCopy());
@@ -45,6 +45,7 @@ public class BusinessPlannerTest extends TestCase
 		TemplateSection curCopy = planner.addBranch();
 		curCopy.setName("Objective 2");
 		planner.getCurrent().setName("Objective 1");
+		
 		planner.setCurrent(planner.getCurrent().getParent());
 		Assert.assertEquals(planner.getCurrent().getChild(0).getName(), "Objective 1");
 		Assert.assertEquals(planner.getCurrent().getChild(1).getName(), "Objective 2");
@@ -58,10 +59,10 @@ public class BusinessPlannerTest extends TestCase
 	 */
 	public void testCentreAssessment()
 	{
-		BusinessPlanner planner = new BusinessPlanner();
+		BusinessPlanner planner = new BusinessPlanner("Centre_Assessment", "myCentre_Assessment");
 
 		// this method loads template from xml
-		planner.chooseTemplate("Centre_Assessment", "myCentre_Assessment");
+		//planner.chooseTemplate("Centre_Assessment", "myCentre_Assessment");
 
 		// tests adding an extra college mission statement. should return null
 		Assert.assertNull(planner.getCurrent().deepCopy());
@@ -94,10 +95,10 @@ public class BusinessPlannerTest extends TestCase
 	 */
 	public void testOKR()
 	{
-		BusinessPlanner planner = new BusinessPlanner();
+		BusinessPlanner planner = new BusinessPlanner("OKR","myOKR");
 
 		// this method loads template from xml
-		planner.chooseTemplate("OKR", "myOKR");
+		//planner.chooseTemplate("OKR", "myOKR");
 
 		// tests adding an extra vision. should return null
 		Assert.assertNull(planner.getCurrent().deepCopy());
