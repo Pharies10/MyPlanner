@@ -31,7 +31,6 @@ public class Server implements ServerInterface, Serializable
 		this.users = new ConcurrentHashMap<String, User>(100);
 		this.dept = new ArrayList<Department>();
 		
-		
 	}
 
 	/**
@@ -40,11 +39,13 @@ public class Server implements ServerInterface, Serializable
 	 * @param password
 	 * @return
 	 * 
-	 * checks the admins has for the key
+	 * checks the admins hash for the key
 	 * then checks if the password of that key matches the password given
 	 * if it does return a true
 	 * any other case return false
 	 * 
+	 * used for login and a check for certain actions that only admins can perform
+	 * used to identify a user within the admin hash
 	 */
 	private boolean adminAccess(String username, String password)
 	{
@@ -62,14 +63,44 @@ public class Server implements ServerInterface, Serializable
 		}
 		return false;
 		
-		
 	}
 	
 	
 	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 * 
+	 * checks the users hash for the key
+	 * then checks if the password of that key matches the password given
+	 * if it does return a true
+	 * any other case return false
+	 * 
+	 * used for login
+	 * 
+	 */
+	private boolean userAccess(String username, String password)
+	{
+		boolean check = users.containsKey(username);
+		if (check == true)
+		{
+			
+			User user = users.get(username);
+			if(user.getPassword() == password)
+			{
+				return true;
+			}
+			
+			
+		}
+		return false;
+
+		
+	}
 	
-	
-	
+
 	
 	/**
 	 * 
@@ -86,6 +117,7 @@ public class Server implements ServerInterface, Serializable
 	}
 	
 	
+	
 	/**
 	 * 
 	 * @param userName
@@ -100,6 +132,31 @@ public class Server implements ServerInterface, Serializable
 		return check;
 	}
 	
+	
+	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 * 
+	 * checks the array list dept for a certain department
+	 * returns null if the department doesn't exists
+	 *
+	 */
+	private Department getDept(String name)
+	{
+		for(int i=0; i<dept.size(); i++)
+		{
+			if(dept.get(i).getDepartmentName() == name)
+			{
+				return dept.get(i);
+			}
+		}
+		return null;
+	}
+	
+	
+	
 	/**
 	 * @param key  =  the client username
 	 * @param value  =  the client password
@@ -113,6 +170,7 @@ public class Server implements ServerInterface, Serializable
 	 * 
 	 * Makes a new user and adds to the correct hash
 	 * has to first check for the admin access
+	 * then checks for an non existent department
 	 * Then checks to make sure the user is not in the hash already
 	 * will throw an exception if the user trying to be added is in the has 
 	 * 
@@ -125,6 +183,11 @@ public class Server implements ServerInterface, Serializable
 			throw new IllegalArgumentException("You are not an admin");
 		}
 		
+		Department department = getDept(deptName);
+		if(department == null)
+		{
+			throw new IllegalArgumentException("there is no department with this name");
+		}
 		
 		User user = new User(name, userName, password, deptName, access); 
 		if(access == true)
@@ -156,40 +219,125 @@ public class Server implements ServerInterface, Serializable
 	
 
 
-	/* (non-Javadoc)
-	 * @see software_masters.business_planner.ServerInterface#adminLogin(java.lang.String, java.lang.String)
+	/**
+	 * 
+	 * @param username 
+	 * @param password
+	 * 
+	 * admin method called by client to login, returns boolean check
+	 * 
 	 */
 	public boolean adminLogin(String username, String password)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		boolean check = adminAccess(username, password);
+		return check;
 	}
 
-	/* (non-Javadoc)
-	 * @see software_masters.business_planner.ServerInterface#userLogin(java.lang.String, java.lang.String)
+	
+	
+	/**
+	 * 
+	 * @param username 
+	 * @param password
+	 * 
+	 * user method called by client to login, returns boolean check
+	 * 
 	 */
 	public boolean userLogin(String username, String password)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		boolean check = userAccess(username, password);
+		return check;
 	}
 
-	/* (non-Javadoc)
-	 * @see software_masters.business_planner.ServerInterface#getPlan(java.lang.String, java.lang.String, java.lang.String)
+	
+	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @param planName 
+	 * 
+	 * checks admin list to figure out whether admin or user
+	 * gets the department and then grabs plan from the department
+	 * checks also if plan is editable
+	 * if the plan is not editable, then only admin can get it
+	 * else an exception thrown
+	 * 
 	 */
 	public BusinessPlanner getPlan(String username, String password, String planName)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		boolean check = adminAccess(username, password);
+		User person;
+		if(check == true)
+		{
+			 person = admins.get(username);
+		}
+		else
+		{
+			 person = users.get(username);
+		}
+		
+
+		String deptName = person.getDeptName();
+		
+		Department department = getDept(deptName);
+		
+		
+		BusinessPlanner plan = department.getPlan(planName);
+		
+		
+		boolean edit = department.getEdit(plan);
+		
+		if(edit == true)
+		{
+			return plan;
+		}
+		else if (check == true)
+		{
+			return plan;
+		}
+		else 
+		{
+			throw new IllegalArgumentException("the client cannot edit this plan");
+		}
+		
+		
 	}
 
-	/* (non-Javadoc)
-	 * @see software_masters.business_planner.ServerInterface#updatePlan(java.lang.String, java.lang.String, software_masters.business_planner.BusinessPlanner)
+	
+	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @param planName 
+	 * 
+	 * finds the person to find the department
+	 * updates it from the update method within department
+	 * 
 	 */
 	public void updatePlan(String username, String password, BusinessPlanner plan)
 	{
-		// TODO Auto-generated method stub
+		boolean check = adminAccess(username, password);
+		User person;
+		if(check == true)
+		{
+			 person = admins.get(username);
+		}
+		else
+		{
+			 person = users.get(username);
+		}
+		
+
+		String deptName = person.getDeptName();
+		
+		Department department = getDept(deptName);
+		
+		department.updatePlan(plan);
 
 	}
 
+	
+	
 }

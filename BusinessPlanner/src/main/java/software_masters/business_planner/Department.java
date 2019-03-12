@@ -194,6 +194,29 @@ public class Department
 	}
 	
 	
+	public void edit(BusinessPlanner plan)
+	{
+		
+		boolean change = plan.isEdit();
+		if(change == true)
+		{
+			plan.setEdit(false);
+		}
+		else
+		{
+			plan.setEdit(true);
+		}
+
+	}
+	
+	public boolean getEdit(BusinessPlanner plan)
+	{
+		return plan.isEdit();
+		
+		
+	}
+	
+	
 	
 	
 	

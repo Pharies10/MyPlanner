@@ -28,6 +28,7 @@ class BusinessPlanner implements Serializable
 	private Template userTemplate;
 	private Template developerTemplate;
 	private TemplateSection current;
+	public boolean edit;
 	
 	
 	
@@ -35,10 +36,42 @@ class BusinessPlanner implements Serializable
 	 * @param userTemplate
 	 * @param developerTemplate
 	 */
-	public BusinessPlanner(String developerTemplate, String userTemplate)
+	public BusinessPlanner(String developerTemplate, String userTemplate, boolean edit)
 	{
 		chooseTemplate(developerTemplate, userTemplate);
+		this.edit = edit;
 	}
+	
+	
+	
+	
+	
+
+	/**
+	 * @return the edit
+	 */
+	public boolean isEdit()
+	{
+		return edit;
+	}
+
+
+
+
+
+
+	/**
+	 * @param edit the edit to set
+	 */
+	public void setEdit(boolean edit)
+	{
+		this.edit = edit;
+	}
+
+
+
+
+
 
 	/**
 	 * Sets developerTemplate to the chosen XML file, clones developerTemplate to

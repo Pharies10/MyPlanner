@@ -23,12 +23,23 @@ public class DeptTest extends TestCase
 		Assert.assertEquals("CSC", dept.getDepartmentName());
 		
 		// add three different planners to the dept
-		BusinessPlanner planner = new BusinessPlanner("VMOSA", "test1");
+		BusinessPlanner planner = new BusinessPlanner("VMOSA", "test1", true);
 		dept.addPlan(planner);
-		BusinessPlanner planner2 = new BusinessPlanner("OKR", "test2");
+		BusinessPlanner planner2 = new BusinessPlanner("OKR", "test2", false);
 		dept.addPlan(planner2);
-		BusinessPlanner planner3 = new BusinessPlanner("Centre_Assessment", "test3");
+		BusinessPlanner planner3 = new BusinessPlanner("Centre_Assessment", "test3", true);
 		dept.addPlan(planner3);
+		
+		
+		
+		// check edit methods
+		
+		boolean check = dept.getEdit(planner);
+		Assert.assertEquals(true, check);
+		
+		dept.edit(planner);
+		check = dept.getEdit(planner);
+		Assert.assertEquals(false, check);
 		
 		
 		// test to make sure you can get the plans
@@ -79,6 +90,8 @@ public class DeptTest extends TestCase
 		//test adding and getting
 		Assert.assertEquals(testAdmin, John);
 		Assert.assertEquals(testUser, Bob);
+		
+		
 		
 		
 		
