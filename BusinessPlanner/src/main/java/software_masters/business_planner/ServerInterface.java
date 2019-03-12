@@ -13,7 +13,7 @@ import java.rmi.RemoteException;
  */
 public interface ServerInterface extends Remote
 {
-	void addUser(String name, String userName, String password, String deptName, boolean admin);
+	void addUser(String key, String value, String name, String userName, String password, String deptName, boolean access);
 	boolean adminLogin(String username, String password);
 	boolean userLogin(String username, String password);
 	BusinessPlanner getPlan(String username, String password, String planName);
