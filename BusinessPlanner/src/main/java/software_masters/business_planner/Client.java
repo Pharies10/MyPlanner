@@ -37,6 +37,76 @@ public class Client implements Serializable
 	
 	
 	/**
+	 * @return the userName
+	 */
+	public String getUserName()
+	{
+		return userName;
+	}
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
+	/**
+	 * @return the password
+	 */
+	public String getPassword()
+	{
+		return password;
+	}
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
+	/**
+	 * @return the login
+	 */
+	public boolean isLogin()
+	{
+		return login;
+	}
+	/**
+	 * @param login the login to set
+	 */
+	public void setLogin(boolean login)
+	{
+		this.login = login;
+	}
+	/**
+	 * @return the server
+	 */
+	public Server getServer()
+	{
+		return server;
+	}
+	/**
+	 * @param server the server to set
+	 */
+	public void setServer(Server server)
+	{
+		this.server = server;
+	}
+	/**
+	 * @return the editable
+	 */
+	public BusinessPlanner getEditable()
+	{
+		return editable;
+	}
+	/**
+	 * @param editable the editable to set
+	 */
+	public void setEditable(BusinessPlanner editable)
+	{
+		this.editable = editable;
+	}
+	/**
 	 * 
 	 * @param name
 	 * @param pass

@@ -11,10 +11,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
-
+import java.beans.*;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -26,7 +24,7 @@ import junit.framework.TestCase;
  *
  *
  */
-public class ServerClientTest extends TestCase
+public class ServerClientTest 
 {
 	
 	static Server serv;
@@ -123,6 +121,8 @@ public class ServerClientTest extends TestCase
 	{
 		
 		
+			
+		
 		Client joe = new Client(prox);
 		
 		//test login
@@ -147,11 +147,12 @@ public class ServerClientTest extends TestCase
 		joe.addUser("jonny", "testUser", "9", "CSC", false);
 		
 		Assert.assertEquals(serv.users.size(), 7);
-		
+
 		
 		try 
 		{
 			bob.addUser("jonny", "testUser2", "9", "CSC", false);
+		
 		} 
 		catch (IllegalArgumentException e)
 		{
