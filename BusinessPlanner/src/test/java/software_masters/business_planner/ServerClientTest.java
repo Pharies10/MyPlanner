@@ -39,6 +39,7 @@ public class ServerClientTest
 	 * @throws NotBoundException 
 	 * 
 	 * sets up the server and registery
+	 * 
 	 */
 	public static void main(String[] args) throws AlreadyBoundException, RemoteException, NotBoundException
 	{
