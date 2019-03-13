@@ -351,6 +351,8 @@ public class Server implements ServerInterface, Serializable
 		
 		department.addPlan(planner);
 		
+		save(department);
+		
 		
 	}
 	

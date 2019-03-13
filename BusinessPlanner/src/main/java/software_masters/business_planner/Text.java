@@ -8,7 +8,7 @@ package software_masters.business_planner;
  * @since 2019-02-23
  */
 
-public class Text implements Content
+public class Text implements Content 
 {
 
 	private String textString;

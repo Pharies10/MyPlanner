@@ -26,7 +26,7 @@ import junit.framework.TestCase;
  *
  *
  */
-public class ServerClientTest  
+public class ServerClientTest extends TestCase
 {
 	
 	static Server serv;
@@ -119,7 +119,7 @@ public class ServerClientTest
 		serv.save(CSC);
 		serv.save(English);
 	}
-	public static void test() throws AccessException, RemoteException, NotBoundException
+	public void test() throws AccessException, RemoteException, NotBoundException
 	{
 		
 		
