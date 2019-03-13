@@ -3,23 +3,28 @@
  */
 package software_masters.business_planner;
 
+
+
 /**
  * @author pharies
  *
  */
-public class User
+public class User 
 {
 
-	protected String Name;
-	protected String userName;
-	protected String password;
-	protected String deptName;
-	protected boolean admin;
+	public String Name;
+	public String userName;
+	public String password;
+	public String deptName;
+	public boolean admin;
 	
 	
 	
 
-
+	public User()
+	{
+		
+	}
 
 
 	/**
@@ -39,6 +44,51 @@ public class User
 		this.admin = admin;
 	}
 
+
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name)
+	{
+		Name = name;
+	}
+
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
+
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
+
+
+	/**
+	 * @param deptName the deptName to set
+	 */
+	public void setDeptName(String deptName)
+	{
+		this.deptName = deptName;
+	}
+
+
+	/**
+	 * @param admin the admin to set
+	 */
+	public void setAdmin(boolean admin)
+	{
+		this.admin = admin;
+	}
 
 
 	/**

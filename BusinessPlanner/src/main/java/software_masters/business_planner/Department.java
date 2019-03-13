@@ -4,20 +4,94 @@
 package software_masters.business_planner;
 
 import java.util.ArrayList;
+import java.io.Serializable;
+import java.beans.*;
 
 /**
  * @author pharies
  *
  */
-public class Department
+public class Department implements Serializable
 {
+	/**
+	 * 
+	 */
+	
 	public String departmentName;
 	public ArrayList<User> admin;
 	public ArrayList<User> users;
 	public ArrayList<BusinessPlanner> plans;
 	
 	
+	public Department()
+	{
+		plans = new ArrayList<BusinessPlanner>();
+	}
 	
+	
+	/**
+	 * @return the admin
+	 */
+	public ArrayList<User> getAdmin()
+	{
+		return admin;
+	}
+
+
+	/**
+	 * @param admin the admin to set
+	 */
+	public void setAdmin(ArrayList<User> admin)
+	{
+		this.admin = admin;
+	}
+
+
+	/**
+	 * @return the users
+	 */
+	public ArrayList<User> getUsers()
+	{
+		return users;
+	}
+
+
+	/**
+	 * @param users the users to set
+	 */
+	public void setUsers(ArrayList<User> users)
+	{
+		this.users = users;
+	}
+
+
+	/**
+	 * @return the plans
+	 */
+	public ArrayList<BusinessPlanner> getPlans()
+	{
+		return plans;
+	}
+
+
+	/**
+	 * @param plans the plans to set
+	 */
+	public void setPlans(ArrayList<BusinessPlanner> plans)
+	{
+		this.plans = plans;
+	}
+
+
+	/**
+	 * @param departmentName the departmentName to set
+	 */
+	public void setDepartmentName(String departmentName)
+	{
+		this.departmentName = departmentName;
+	}
+
+
 	/**
 	 * 
 	 * @param departmentName
@@ -32,6 +106,23 @@ public class Department
 		this.plans = new ArrayList<BusinessPlanner>();
 	}
 	
+	/**
+	 * 
+	 * @param departmentName
+	 * @param admin
+	 * @param users
+	 * @param plans
+	 * 
+	 * constructor is wanted to set up with preexisting variable
+	 */
+	public Department(String departmentName, ArrayList<User> admin, ArrayList<User> users)
+	{
+		
+		this.departmentName = departmentName;
+		this.admin = admin;
+		this.users = users;
+		this.plans = new ArrayList<BusinessPlanner>();
+	}
 	
 	/**
 	 * 
@@ -167,6 +258,10 @@ public class Department
 		throw new IllegalArgumentException("The plan you have chosen doesnt exists");
 	}
 	
+	
+	
+	
+	
 	/**
 	 * 
 	 * @param plan
@@ -179,7 +274,7 @@ public class Department
 		
 		for(int i = 0; i < plans.size(); i++)
 		{
-			if(plans.get(i).getUserTemplate().getUserTemplateName() == name)
+			if(plans.get(i).getUserTemplate().getUserTemplateName().equals(name))
 			{
 				plans.remove(i);
 				plans.add(i,plan);
@@ -193,7 +288,13 @@ public class Department
 		
 	}
 	
-	
+	/**
+	 * 
+	 * 
+	 * @param plan
+	 * 
+	 * changes edit variable
+	 */
 	public void edit(BusinessPlanner plan)
 	{
 		
@@ -217,7 +318,6 @@ public class Department
 	}
 	
 	
-	
-	
+
 	
 }

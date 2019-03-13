@@ -3,8 +3,7 @@
  */
 package software_masters.business_planner;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -13,6 +12,8 @@ import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
+import java.beans.*;
+import java.rmi.Remote;
 
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
@@ -27,14 +28,16 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class Server implements ServerInterface, Serializable
 {
-	private ConcurrentHashMap<String, User> admins;
-	private ConcurrentHashMap<String, User> users;
-	private ArrayList<Department> dept;
+	public ConcurrentHashMap<String, User> admins;
+	public ConcurrentHashMap<String, User> users;
+	public ArrayList<Department> dept;
 	private static final long serialVersionUID = 1L;
+	public ServerInterface proxy;
 	
 	
-	public Server()
+	public Server() throws RemoteException 
 	{
+		
 		this.admins = new ConcurrentHashMap<String, User>(50);
 		this.users = new ConcurrentHashMap<String, User>(100);
 		this.dept = new ArrayList<Department>();
@@ -57,14 +60,14 @@ public class Server implements ServerInterface, Serializable
 	 * used to identify a user within the admin hash
 	 * 
 	 */
-	private boolean adminAccess(String username, String password)
+	public boolean adminAccess(String username, String password)
 	{
 		boolean check = admins.containsKey(username);
 		if (check == true)
 		{
 			
 			User user = admins.get(username);
-			if(user.getPassword() == password)
+			if(user.getPassword().equals(password))
 			{
 				return true;
 			}
@@ -91,14 +94,14 @@ public class Server implements ServerInterface, Serializable
 	 * used for login
 	 * 
 	 */
-	private boolean userAccess(String username, String password)
+	public boolean userAccess(String username, String password)
 	{
 		boolean check = users.containsKey(username);
 		if (check == true)
 		{
 			
 			User user = users.get(username);
-			if(user.getPassword() == password)
+			if(user.getPassword().equals(password))
 			{
 				return true;
 			}
@@ -120,7 +123,7 @@ public class Server implements ServerInterface, Serializable
 	 * checks if the username given is in admin hash 
 	 * 
 	 */
-	private boolean checkAdmin(String userName)
+	public boolean checkAdmin(String userName)
 	{
 		boolean check = admins.containsKey(userName);
 		return check;
@@ -153,11 +156,11 @@ public class Server implements ServerInterface, Serializable
 	 * returns null if the department doesn't exists
 	 *
 	 */
-	private Department getDept(String name)
+	public Department getDept(String name)
 	{
 		for(int i=0; i<dept.size(); i++)
 		{
-			if(dept.get(i).getDepartmentName() == name)
+			if(dept.get(i).getDepartmentName().equals(name))
 			{
 				return dept.get(i);
 			}
@@ -205,7 +208,7 @@ public class Server implements ServerInterface, Serializable
 		if(access == true)
 		{
 			boolean copy = checkAdmin(userName);
-			if(copy == false)
+			if(copy == true)
 			{
 				throw new IllegalArgumentException("the user that is being added is already in the server");
 			}
@@ -218,7 +221,7 @@ public class Server implements ServerInterface, Serializable
 		else
 		{
 			boolean copy = checkUser(userName);
-			if(copy == false)
+			if(copy == true)
 			{
 				throw new IllegalArgumentException("the user that is being added is already in the server");
 			}
@@ -304,7 +307,7 @@ public class Server implements ServerInterface, Serializable
 		{
 			return plan;
 		}
-		else if (check == true)
+		else if (check == true && edit == false)
 		{
 			return plan;
 		}
@@ -316,6 +319,42 @@ public class Server implements ServerInterface, Serializable
 		
 	}
 
+	
+	/**
+	 * 
+	 * @param user
+	 * @param dev
+	 * @param access
+	 * 
+	 * 
+	 * makes a new businessplanner and adds to list
+	 * 
+	 */
+	public void createPlan(String username, String password, String user, String dev, boolean access)
+	{
+		boolean check = adminAccess(username, password);
+		User person;
+		if(check == true)
+		{
+			 person = admins.get(username);
+		}
+		else
+		{
+			 throw new IllegalArgumentException("the client cannot make k plan");
+		}
+		
+		BusinessPlanner planner = new BusinessPlanner(user, dev, access);
+		
+		String deptName = person.getDeptName();
+		
+		Department department = getDept(deptName);
+		
+		department.addPlan(planner);
+		
+		
+	}
+	
+	
 	
 	
 	/**
@@ -353,7 +392,43 @@ public class Server implements ServerInterface, Serializable
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @param Plan
+	 * @param name  =  the new name of the business plan
+	 * 
+	 * takes the plan given and makes a copy, 
+	 * since a deep copy is sent back and forth can just assign variable to it
+	 * 
+	 */
+	public void copyPlan(String username, String password, BusinessPlanner Plan, String name)
+	{
+		
+		boolean check = adminAccess(username, password);
+		User person;
+		if(check == true)
+		{
+			 person = admins.get(username);
+		}
+		else
+		{
+			 person = users.get(username);
+		}
+		
+		String deptName = person.getDeptName();
+		
+		Department department = getDept(deptName);
+		
+		BusinessPlanner newPlan = Plan;
+		
+		newPlan.getUserTemplate().setDeveloperTemplateName(name);
+		
+		department.addPlan(newPlan);
+		
+		save(department);
+	}
 
 	/**
 	 * 
@@ -365,7 +440,7 @@ public class Server implements ServerInterface, Serializable
 	public void save(Department dept)
 	{
 		String fileName = dept.getDepartmentName();
-		
+	
 		XMLEncoder encoder=null;
 		try
 		{
@@ -376,6 +451,7 @@ public class Server implements ServerInterface, Serializable
 			System.out.println("ERROR: While Creating or Opening the File dvd.xml");
 		}
 		encoder.writeObject(dept);
+		
 		encoder.close();
 		
 		
@@ -417,9 +493,11 @@ public class Server implements ServerInterface, Serializable
 				{
 						System.out.println("ERROR: File dvd.xml not found");
 				}
-				Department department = (Department)decoder.readObject();
+				Department department = (Department) decoder.readObject();
 				
 				dept.add(department);
+				
+				makeHashes(department);
 				
 				
 			}
@@ -428,5 +506,80 @@ public class Server implements ServerInterface, Serializable
 		}
 			
 	}
+	
+	/**
+	 * 
+	 * @param department
+	 * 
+	 * makes the hashes at the beginning of the server when the departments are loaded.
+	 * 
+	 */
+	public void makeHashes(Department department)
+	{
+		for(int i = 0; i < department.admin.size(); i++)
+		{
+	
+			
+			admins.put(department.admin.get(i).getUserName(), department.admin.get(i));
+
+			
+		}
+		
+		for(int i = 0; i < department.users.size(); i++)
+		{
+			
+			users.put(department.users.get(i).getUserName(), department.users.get(i));
+
+			
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	/**
+	 *
+	 * @param username
+	 * @param password
+	 * @param plan
+	 * 
+	 * 
+	 * sets the plan editability to the opposite of what it is now
+	 * since edit is a private variable within the plan, it has to be changed by the department.
+	 * 
+	 */
+	public void setEdit(String username, String password, BusinessPlanner plan)
+	{
+		
+		boolean check = adminAccess(username, password);
+		User person;
+		if(check == true)
+		{
+			 person = admins.get(username);
+		}
+		else
+		{
+			throw new IllegalArgumentException("you are not an admin");
+		}
+		
+		String deptName = person.getDeptName();
+		
+		Department department = getDept(deptName);
+		
+		department.edit(plan);
+		
+		save(department);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

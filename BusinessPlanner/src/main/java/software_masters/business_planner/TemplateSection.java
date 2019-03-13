@@ -1,5 +1,7 @@
 package software_masters.business_planner;
 
+import java.io.Serializable;
+import java.beans.*;
 /**
  * This class represents the data in a given business plan section.
  * 
@@ -14,17 +16,17 @@ package software_masters.business_planner;
 
 import java.util.ArrayList;
 
-public class TemplateSection
+public class TemplateSection implements Serializable
 {
 
-	private String category;
-	private String name;
+	public String category;
+	public String name;
 
-	private TemplateSection parent;
-	private boolean canCopy;
+	public TemplateSection parent;
+	public boolean canCopy;
 
-	private ArrayList<TemplateSection> children = new ArrayList<TemplateSection>();
-	private ArrayList<Content> contents = new ArrayList<Content>();
+	public ArrayList<TemplateSection> children = new ArrayList<TemplateSection>();
+	public ArrayList<Content> contents = new ArrayList<Content>();
 
 	/**
 	 * constructor for serialization
@@ -218,7 +220,7 @@ public class TemplateSection
 	 * 
 	 * @return a clone of the TemplateSection using a recursive deep copy method.
 	 */
-	private TemplateSection recDeepCopyHelper()
+	public TemplateSection recDeepCopyHelper()
 	{
 		TemplateSection copy = new TemplateSection(this.category, this.name, this.canCopy);
 		for (Content c1 : this.contents)

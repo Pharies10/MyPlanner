@@ -5,7 +5,7 @@
    <string>departmentName</string>
    <void method="set">
     <object idref="Department0"/>
-    <string>CSC</string>
+    <string>English</string>
    </void>
   </void>
   <void class="software_masters.business_planner.Department" method="getField">
@@ -19,28 +19,28 @@
         <string>Name</string>
         <void method="set">
          <object idref="User0"/>
-         <string>admin1</string>
+         <string>admin2</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>userName</string>
         <void method="set">
          <object idref="User0"/>
-         <string>a</string>
+         <string>b</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>password</string>
         <void method="set">
          <object idref="User0"/>
-         <string>1</string>
+         <string>2</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>deptName</string>
         <void method="set">
          <object idref="User0"/>
-         <string>CSC</string>
+         <string>English</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
@@ -66,28 +66,28 @@
         <string>Name</string>
         <void method="set">
          <object idref="User1"/>
-         <string>user1</string>
+         <string>user4</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>userName</string>
         <void method="set">
          <object idref="User1"/>
-         <string>a</string>
+         <string>d</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>password</string>
         <void method="set">
          <object idref="User1"/>
-         <string>1</string>
+         <string>4</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>deptName</string>
         <void method="set">
          <object idref="User1"/>
-         <string>CSC</string>
+         <string>English</string>
         </void>
        </void>
       </object>
@@ -98,28 +98,28 @@
         <string>Name</string>
         <void method="set">
          <object idref="User2"/>
-         <string>user2</string>
+         <string>user5</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>userName</string>
         <void method="set">
          <object idref="User2"/>
-         <string>b</string>
+         <string>e</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>password</string>
         <void method="set">
          <object idref="User2"/>
-         <string>2</string>
+         <string>5</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>deptName</string>
         <void method="set">
          <object idref="User2"/>
-         <string>CSC</string>
+         <string>English</string>
         </void>
        </void>
       </object>
@@ -130,92 +130,28 @@
         <string>Name</string>
         <void method="set">
          <object idref="User3"/>
-         <string>user3</string>
+         <string>user6</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>userName</string>
         <void method="set">
          <object idref="User3"/>
-         <string>c</string>
+         <string>f</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>password</string>
         <void method="set">
          <object idref="User3"/>
-         <string>3</string>
+         <string>6</string>
         </void>
        </void>
        <void class="software_masters.business_planner.User" method="getField">
         <string>deptName</string>
         <void method="set">
          <object idref="User3"/>
-         <string>CSC</string>
-        </void>
-       </void>
-      </object>
-     </void>
-     <void method="add">
-      <object class="software_masters.business_planner.User" id="User4">
-       <void class="software_masters.business_planner.User" method="getField">
-        <string>Name</string>
-        <void method="set">
-         <object idref="User4"/>
-         <string>jonny</string>
-        </void>
-       </void>
-       <void class="software_masters.business_planner.User" method="getField">
-        <string>userName</string>
-        <void method="set">
-         <object idref="User4"/>
-         <string>testUser</string>
-        </void>
-       </void>
-       <void class="software_masters.business_planner.User" method="getField">
-        <string>password</string>
-        <void method="set">
-         <object idref="User4"/>
-         <string>9</string>
-        </void>
-       </void>
-       <void class="software_masters.business_planner.User" method="getField">
-        <string>deptName</string>
-        <void method="set">
-         <object idref="User4"/>
-         <string>CSC</string>
-        </void>
-       </void>
-      </object>
-     </void>
-     <void method="add">
-      <object class="software_masters.business_planner.User" id="User5">
-       <void class="software_masters.business_planner.User" method="getField">
-        <string>Name</string>
-        <void method="set">
-         <object idref="User5"/>
-         <string>jonny</string>
-        </void>
-       </void>
-       <void class="software_masters.business_planner.User" method="getField">
-        <string>userName</string>
-        <void method="set">
-         <object idref="User5"/>
-         <string>testUser2</string>
-        </void>
-       </void>
-       <void class="software_masters.business_planner.User" method="getField">
-        <string>password</string>
-        <void method="set">
-         <object idref="User5"/>
-         <string>9</string>
-        </void>
-       </void>
-       <void class="software_masters.business_planner.User" method="getField">
-        <string>deptName</string>
-        <void method="set">
-         <object idref="User5"/>
-         <string>CSC</string>
+         <string>English</string>
         </void>
        </void>
       </object>
