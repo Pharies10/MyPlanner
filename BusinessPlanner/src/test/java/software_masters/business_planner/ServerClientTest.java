@@ -119,7 +119,7 @@ public class ServerClientTest extends TestCase
 		serv.save(CSC);
 		serv.save(English);
 	}
-	public void test() throws AccessException, RemoteException, NotBoundException
+	public static void test() throws AccessException, RemoteException, NotBoundException
 	{
 		
 		
@@ -176,8 +176,28 @@ public class ServerClientTest extends TestCase
 		
 		joe.getPlan("myPlan");
 		
-		//Assert.assertEquals(joe.editable, );
+		joe.changeEdit();
 		
+		joe.savePlan();
+		
+		
+		try 
+		{
+			bob.getPlan("myPlan");
+		} 
+		catch (IllegalArgumentException e)
+		{
+			  e.getMessage();
+		}
+		
+		try 
+		{
+			bob.createPlan("myPlan2", "VMOSA", true);
+		} 
+		catch (IllegalArgumentException e)
+		{
+			  e.getMessage();
+		}
 	}
 	
 }
