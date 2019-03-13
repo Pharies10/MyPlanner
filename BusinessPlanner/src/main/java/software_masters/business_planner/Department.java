@@ -17,15 +17,15 @@ public class Department implements Serializable
 	 * 
 	 */
 	
-	public String departmentName;
-	public ArrayList<User> admin;
-	public ArrayList<User> users;
-	public ArrayList<BusinessPlanner> plans;
+	private String departmentName;
+	private ArrayList<User> admin;
+	private ArrayList<User> users;
+	private ArrayList<BusinessPlanner> plans;
 	
 	
 	public Department()
 	{
-		plans = new ArrayList<BusinessPlanner>();
+		this("not a department");
 	}
 	
 	

@@ -518,19 +518,19 @@ public class Server implements ServerInterface, Serializable
 	 */
 	public void makeHashes(Department department)
 	{
-		for(int i = 0; i < department.admin.size(); i++)
+		for(int i = 0; i < department.getAdmin().size(); i++)
 		{
 	
 			
-			admins.put(department.admin.get(i).getUserName(), department.admin.get(i));
+			admins.put(department.getAdmin().get(i).getUserName(), department.getAdmin().get(i));
 
 			
 		}
 		
-		for(int i = 0; i < department.users.size(); i++)
+		for(int i = 0; i < department.getUsers().size(); i++)
 		{
 			
-			users.put(department.users.get(i).getUserName(), department.users.get(i));
+			users.put(department.getUsers().get(i).getUserName(), department.getUsers().get(i));
 
 			
 		}

@@ -12,6 +12,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+
+
+
 import java.beans.*;
 import junit.framework.Assert;
 import junit.framework.TestCase;
@@ -24,7 +27,7 @@ import junit.framework.TestCase;
  *
  *
  */
-public class ServerClientTest 
+public class ServerClientTest extends TestCase
 {
 	
 	static Server serv;
@@ -48,10 +51,12 @@ public class ServerClientTest
         
         deptNames = new ArrayList<String>();
         setServer();
+        
         serv.load(deptNames);
         
-        reg = LocateRegistry.createRegistry(1099);
         
+        reg = LocateRegistry.createRegistry(1099);
+        //fail( "My method didn't throw when I expected it to" );
         reg.rebind("testServer", serv);
         prox = (Server) reg.lookup("testServer");
         System.out.println("server ready");
@@ -162,8 +167,9 @@ public class ServerClientTest
 		
 		
 		// test creating a plan and getting that plan
-		joe.createPlan("myPlan", "VMOSA", true);
 		
+		joe.createPlan("myPlan", "VMOSA", true);
+		/**
 		joe.getPlan("myPlan");
 		
 		Assert.assertEquals(joe.editable.getUserTemplate().getUserTemplateName(), "myPlan");
@@ -200,6 +206,10 @@ public class ServerClientTest
 		{
 			  e.getMessage();
 		}
+		*/
+		
 	}
+	
+	
 	
 }

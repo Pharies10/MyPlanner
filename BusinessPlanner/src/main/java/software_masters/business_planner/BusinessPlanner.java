@@ -25,14 +25,14 @@ class BusinessPlanner implements Serializable
 	 * 
 	 */
 	
-	public Template userTemplate;
-	public Template developerTemplate;
-	public TemplateSection current;
-	public boolean edit;
+	private Template userTemplate;
+	private Template developerTemplate;
+	private TemplateSection current;
+	private boolean edit;
 	
 	public BusinessPlanner()
 	{
-	
+		this("VMOSA", null, false);
 	}
 	
 	
@@ -42,7 +42,8 @@ class BusinessPlanner implements Serializable
 	 */
 	public BusinessPlanner(String userTemplate, String developerTemplate, boolean edit)
 	{
-		chooseTemplate(developerTemplate, userTemplate);
+		
+		//chooseTemplate(userTemplate, developerTemplate);
 		this.edit = edit;
 	}
 	
@@ -84,7 +85,7 @@ class BusinessPlanner implements Serializable
 	 * 
 	 * @param templateName     of chosen developerTemplate XML file
 	 * @param userTemplateName name of userTemplate
-	 */
+	 
 	public void chooseTemplate(String templateName, String userTemplateName)
 	{
 		developerTemplate = Template.loadDeveloperTemplate(templateName);
@@ -92,7 +93,7 @@ class BusinessPlanner implements Serializable
 		userTemplate.setUserTemplateName(userTemplateName);
 		current = userTemplate.getRoot();
 	}
-
+	*/
 	/**
 	 * Allows the user to load a previously edited user template from memory.
 	 * 
