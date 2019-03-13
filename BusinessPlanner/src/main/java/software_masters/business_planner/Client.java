@@ -65,6 +65,7 @@ public class Client implements Serializable
 		this.password = password;
 	}
 	/**
+	 * 
 	 * @return the login
 	 */
 	public boolean isLogin()
