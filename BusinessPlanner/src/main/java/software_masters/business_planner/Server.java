@@ -298,10 +298,11 @@ public class Server implements ServerInterface, Serializable
 		Department department = getDept(deptName);
 		
 		
-		BusinessPlanner plan = department.getPlan(planName);
+		Template temp = department.getPlan(planName);
 		
+		BusinessPlanner plan = new BusinessPlanner(temp.getDeveloperTemplateName(), temp.getUserTemplateName());
 		
-		boolean edit = department.getEdit(plan);
+		boolean edit = temp.isEdit();
 		
 		if(edit == true)
 		{
@@ -343,7 +344,7 @@ public class Server implements ServerInterface, Serializable
 			 throw new IllegalArgumentException("the client cannot make k plan");
 		}
 		
-		BusinessPlanner planner = new BusinessPlanner(user, dev, access);
+		Template planner = new Template(dev, user, null, access);
 		
 		String deptName = person.getDeptName();
 		
@@ -382,12 +383,13 @@ public class Server implements ServerInterface, Serializable
 			 person = users.get(username);
 		}
 		
-
+		Template temp = plan.getUserTemplate();
+		
 		String deptName = person.getDeptName();
 		
 		Department department = getDept(deptName);
 		
-		department.updatePlan(plan);
+		department.updatePlan(temp);
 		
 		save(department);
 
@@ -405,7 +407,7 @@ public class Server implements ServerInterface, Serializable
 	 * since a deep copy is sent back and forth can just assign variable to it
 	 * 
 	 */
-	public void copyPlan(String username, String password, BusinessPlanner Plan, String name)
+	public void copyPlan(String username, String password, BusinessPlanner plan, String name)
 	{
 		
 		boolean check = adminAccess(username, password);
@@ -419,15 +421,20 @@ public class Server implements ServerInterface, Serializable
 			 person = users.get(username);
 		}
 		
+		Template temp = plan.getUserTemplate();
+		
+		
 		String deptName = person.getDeptName();
 		
 		Department department = getDept(deptName);
 		
-		BusinessPlanner newPlan = Plan;
+		Template newTemp = temp;
 		
-		newPlan.getUserTemplate().setDeveloperTemplateName(name);
+		newTemp.setUserTemplateName(name);
 		
-		department.addPlan(newPlan);
+		
+		
+		department.addPlan(newTemp);
 		
 		save(department);
 	}
@@ -567,11 +574,13 @@ public class Server implements ServerInterface, Serializable
 			throw new IllegalArgumentException("you are not an admin");
 		}
 		
+		Template temp = plan.getUserTemplate();
+		
 		String deptName = person.getDeptName();
 		
 		Department department = getDept(deptName);
 		
-		department.edit(plan);
+		department.edit(temp);
 		
 		save(department);
 	}

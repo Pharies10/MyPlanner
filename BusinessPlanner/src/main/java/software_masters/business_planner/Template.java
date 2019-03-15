@@ -23,13 +23,14 @@ public class Template
 	private String developerTemplateName;
 	private String userTemplateName;
 	private TemplateSection root;
+	private boolean edit;
 
 	/**
 	 * This constructor creates a default object for use by XML encoder
 	 */
 	public Template()
 	{
-		this(null, null, null);
+		this(null, null, null, false);
 	}
 
 	/**
@@ -39,11 +40,12 @@ public class Template
 	 * 
 	 *                              Constructor for creating Template object.
 	 */
-	public Template(String developerTemplateName, String userTemplateName, TemplateSection root)
+	public Template(String developerTemplateName, String userTemplateName, TemplateSection root, boolean edit)
 	{
 		this.developerTemplateName = developerTemplateName;
 		this.userTemplateName = userTemplateName;
 		this.root = root;
+		this.edit = edit;
 	}
 
 	/**
@@ -94,6 +96,9 @@ public class Template
 		this.root = root;
 	}
 
+	
+	
+	
 	/**
 	 * This method serializes the object.
 	 */
@@ -204,6 +209,23 @@ public class Template
 		} else if (!userTemplateName.equals(other.userTemplateName))
 			return false;
 		return true;
+	}
+	
+	/**
+	 * @return
+	 */
+	public boolean isEdit()
+	{
+		return edit;
+	}
+	
+	
+	/**
+	 * @param edit
+	 */
+	public void setEdit(boolean edit)
+	{
+		this.edit = edit;
 	}
 
 }

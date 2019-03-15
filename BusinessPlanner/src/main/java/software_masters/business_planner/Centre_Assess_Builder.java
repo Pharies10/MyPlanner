@@ -39,7 +39,7 @@ public class Centre_Assess_Builder
 		goal.setParent(programMission);
 		programMission.setParent(collegeMission);
 
-		return new Template("Centre_Assessment", null, collegeMission);
+		return new Template("Centre_Assessment", null, collegeMission, false);
 	}
 
 	public static void main(String[] args)

@@ -23,11 +23,11 @@ public class DeptTest extends TestCase
 		Assert.assertEquals("CSC", dept.getDepartmentName());
 		
 		// add three different planners to the dept
-		BusinessPlanner planner = new BusinessPlanner("VMOSA", "test1", true);
+		Template planner = new Template("VMOSA", "test1",null,  true);
 		dept.addPlan(planner);
-		BusinessPlanner planner2 = new BusinessPlanner("OKR", "test2", false);
+		Template planner2 = new Template("OKR", "test2",null,  false);
 		dept.addPlan(planner2);
-		BusinessPlanner planner3 = new BusinessPlanner("Centre_Assessment", "test3", true);
+		Template planner3 = new Template("Centre_Assessment", "test3",null,  true);
 		dept.addPlan(planner3);
 		
 		
@@ -43,29 +43,29 @@ public class DeptTest extends TestCase
 		
 		
 		// test to make sure you can get the plans
-		BusinessPlanner test1 = dept.getPlan("test1");
+		Template test1 = dept.getPlan("test1");
 		Assert.assertEquals(test1, planner);
-		BusinessPlanner test2 = dept.getPlan("test2");
+		Template test2 = dept.getPlan("test2");
 		Assert.assertEquals(test2, planner2);
-		BusinessPlanner test3 = dept.getPlan("test3");
+		Template test3 = dept.getPlan("test3");
 		Assert.assertEquals(test3, planner3);
 		
+		BusinessPlanner plan = new BusinessPlanner(test1.getDeveloperTemplateName(), test2.getUserTemplateName());
 		
-		
-		test1.setCurrent(planner.getCurrent().getChild(0).getChild(0)); // objective level
+		plan.setCurrent(plan.getCurrent().getChild(0).getChild(0)); // objective level
 		
 		
 		// test update 
 		
 		// add branch
-		TemplateSection edit = test1.addBranch();
+		TemplateSection edit = plan.addBranch();
 		edit.setName("CHECK");
 		
 		// update the plan within the dept
-		dept.updatePlan(test1);
+		dept.updatePlan(plan.getUserTemplate());
 		
 		// get copy
-		BusinessPlanner testUpdate = dept.getPlan("test1");
+		Template testUpdate = dept.getPlan("test1");
 		
 		//test
 		Assert.assertEquals(testUpdate, test1);

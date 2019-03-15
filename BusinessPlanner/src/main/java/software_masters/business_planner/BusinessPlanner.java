@@ -28,11 +28,11 @@ class BusinessPlanner implements Serializable
 	private Template userTemplate;
 	private Template developerTemplate;
 	private TemplateSection current;
-	private boolean edit;
+	
 	
 	public BusinessPlanner()
 	{
-		this("VMOSA", null, false);
+		this("VMOSA", null);
 	}
 	
 	
@@ -40,41 +40,20 @@ class BusinessPlanner implements Serializable
 	 * @param userTemplate
 	 * @param developerTemplate
 	 */
-	public BusinessPlanner(String userTemplate, String developerTemplate, boolean edit)
+	public BusinessPlanner(String developerTemplate, String userTemplate)
 	{
+		chooseTemplate(developerTemplate, userTemplate);
 		
-		//chooseTemplate(userTemplate, developerTemplate);
-		this.edit = edit;
 	}
 	
-	
-	
-	
-	
 
-	/**
-	 * @return the edit
-	 */
-	public boolean isEdit()
+	private void chooseTemplate(String templateName, String userTemplateName)
 	{
-		return edit;
+		developerTemplate = Template.loadDeveloperTemplate(templateName);
+		userTemplate = Template.loadDeveloperTemplate(templateName);
+		userTemplate.setUserTemplateName(userTemplateName);
+		current = userTemplate.getRoot();
 	}
-
-
-
-
-
-
-	/**
-	 * @param edit the edit to set
-	 */
-	public void setEdit(boolean edit)
-	{
-		this.edit = edit;
-	}
-
-
-
 
 
 

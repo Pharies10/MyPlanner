@@ -20,7 +20,7 @@ public class Department implements Serializable
 	private String departmentName;
 	private ArrayList<User> admin;
 	private ArrayList<User> users;
-	private ArrayList<BusinessPlanner> plans;
+	private ArrayList<Template> plans;
 	
 	
 	public Department()
@@ -68,7 +68,7 @@ public class Department implements Serializable
 	/**
 	 * @return the plans
 	 */
-	public ArrayList<BusinessPlanner> getPlans()
+	public ArrayList<Template> getPlans()
 	{
 		return plans;
 	}
@@ -77,7 +77,7 @@ public class Department implements Serializable
 	/**
 	 * @param plans the plans to set
 	 */
-	public void setPlans(ArrayList<BusinessPlanner> plans)
+	public void setPlans(ArrayList<Template> plans)
 	{
 		this.plans = plans;
 	}
@@ -103,7 +103,7 @@ public class Department implements Serializable
 		this.departmentName = departmentName;
 		this.admin = new ArrayList<User>();
 		this.users = new ArrayList<User>();
-		this.plans = new ArrayList<BusinessPlanner>();
+		this.plans = new ArrayList<Template>();
 	}
 	
 	/**
@@ -121,7 +121,7 @@ public class Department implements Serializable
 		this.departmentName = departmentName;
 		this.admin = admin;
 		this.users = users;
-		this.plans = new ArrayList<BusinessPlanner>();
+		this.plans = new ArrayList<Template>();
 	}
 	
 	/**
@@ -221,7 +221,7 @@ public class Department implements Serializable
 	 * if the plan is already in the list  is an exception is thrown
 	 * 
 	 */
-	public void addPlan(BusinessPlanner Plan)
+	public void addPlan(Template Plan)
 	{
 
 		if(plans.contains(Plan) == false)
@@ -245,11 +245,11 @@ public class Department implements Serializable
 	 * if not and the for loop ends with nothing being found, then an exception is thrown.
 	 * 
 	 */
-	public BusinessPlanner getPlan(String name)
+	public Template getPlan(String name)
 	{
 		for(int i = 0; i < plans.size(); i++)
 		{
-			if(plans.get(i).getUserTemplate().getUserTemplateName() == name)
+			if(plans.get(i).getUserTemplateName().equals(name))
 			{
 				return plans.get(i);
 			}
@@ -268,13 +268,13 @@ public class Department implements Serializable
 	 * updates the plan, if new plan add it to the list
 	 * 
 	 */
-	public void updatePlan(BusinessPlanner plan)
+	public void updatePlan(Template plan)
 	{
-		String name = plan.getUserTemplate().getUserTemplateName();
+		String name = plan.getUserTemplateName();
 		
 		for(int i = 0; i < plans.size(); i++)
 		{
-			if(plans.get(i).getUserTemplate().getUserTemplateName().equals(name))
+			if(plans.get(i).getUserTemplateName().equals(name))
 			{
 				plans.remove(i);
 				plans.add(i,plan);
@@ -295,7 +295,7 @@ public class Department implements Serializable
 	 * 
 	 * changes edit variable
 	 */
-	public void edit(BusinessPlanner plan)
+	public void edit(Template plan)
 	{
 		
 		boolean change = plan.isEdit();
@@ -310,7 +310,7 @@ public class Department implements Serializable
 
 	}
 	
-	public boolean getEdit(BusinessPlanner plan)
+	public boolean getEdit(Template plan)
 	{
 		return plan.isEdit();
 		

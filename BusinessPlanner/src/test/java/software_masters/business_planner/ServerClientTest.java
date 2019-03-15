@@ -12,10 +12,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
-
-
-
-import java.beans.*;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -116,6 +112,18 @@ public class ServerClientTest extends TestCase
 		English.setAdmin(adminList2);
 		English.setUsers(usersList2);
 		
+		
+		
+		
+		
+
+		
+		
+	
+		
+		
+
+		
 		deptNames.add("CSC");
 		deptNames.add("English");
 		
@@ -169,7 +177,7 @@ public class ServerClientTest extends TestCase
 		// test creating a plan and getting that plan
 		
 		joe.createPlan("myPlan", "VMOSA", true);
-		/**
+		
 		joe.getPlan("myPlan");
 		
 		Assert.assertEquals(joe.editable.getUserTemplate().getUserTemplateName(), "myPlan");
@@ -184,9 +192,23 @@ public class ServerClientTest extends TestCase
 		
 		joe.getPlan("myPlan");
 		
+		Assert.assertEquals(joe.editable.getUserTemplate().getUserTemplateName(), "myPlan");
+		
 		joe.changeEdit();
+		joe.getEditable().setCurrent(joe.getEditable().getCurrent().getChild(0).getChild(0));
+		joe.getEditable().addBranch();
+		
+		
+		Assert.assertEquals(joe.getEditable().getCurrent().getChildren().size(), 2);
+		
+		joe.copyPlan("myplan2");
+		
+		joe.getPlan("myplan2");
+		
+		Assert.assertEquals(joe.getEditable().getCurrent().getChildren().size(), 2);
 		
 		joe.savePlan();
+		
 		
 		
 		try 
@@ -206,7 +228,7 @@ public class ServerClientTest extends TestCase
 		{
 			  e.getMessage();
 		}
-		*/
+		
 		
 	}
 	
