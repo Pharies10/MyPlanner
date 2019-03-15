@@ -104,6 +104,7 @@ class BusinessPlanner implements Serializable
 
 		if (copy != null)
 		{
+			System.out.println("hello");
 			current.getParent().addChild(copy);
 			copy.setParent(current);
 			return copy;

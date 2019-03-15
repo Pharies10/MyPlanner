@@ -51,6 +51,9 @@
      <void property="developerTemplateName">
       <string>VMOSA</string>
      </void>
+     <void property="edit">
+      <boolean>true</boolean>
+     </void>
      <void property="root">
       <object class="software_masters.business_planner.TemplateSection" id="TemplateSection0">
        <void class="software_masters.business_planner.TemplateSection" method="getField">
@@ -78,6 +81,19 @@
      </void>
      <void property="userTemplateName">
       <string>myPlan</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="software_masters.business_planner.Template">
+     <void property="developerTemplateName">
+      <string>VMOSA</string>
+     </void>
+     <void property="edit">
+      <boolean>true</boolean>
+     </void>
+     <void property="userTemplateName">
+      <string>myPlan2</string>
      </void>
     </object>
    </void>
@@ -250,70 +266,55 @@
  <void method="set">
   <object class="software_masters.business_planner.TemplateSection" id="TemplateSection1">
    <void class="software_masters.business_planner.TemplateSection" method="getField">
-    <string>name</string>
-    <void method="set">
-     <object idref="TemplateSection1"/>
-     <string>Mission</string>
-    </void>
-   </void>
-   <void class="software_masters.business_planner.TemplateSection" method="getField">
     <string>parent</string>
     <void method="set">
      <object idref="TemplateSection1"/>
-     <object idref="TemplateSection0"/>
-    </void>
-   </void>
-   <void class="software_masters.business_planner.TemplateSection" method="getField">
-    <string>canCopy</string>
-    <void method="set">
-     <object idref="TemplateSection1"/>
-     <boolean>false</boolean>
-    </void>
-   </void>
-  </object>
-  <string>Mission</string>
- </void>
-</void>
-<void class="software_masters.business_planner.TemplateSection" id="Field0" method="getField">
- <string>contents</string>
- <void id="ArrayList0" method="get">
-  <object class="software_masters.business_planner.TemplateSection" id="TemplateSection2">
-   <void class="software_masters.business_planner.TemplateSection" method="getField">
-    <string>category</string>
-    <void method="set">
-     <object idref="TemplateSection2"/>
-     <string>Strategies</string>
-    </void>
-   </void>
-   <void class="software_masters.business_planner.TemplateSection" method="getField">
-    <string>parent</string>
-    <void method="set">
-     <object idref="TemplateSection2"/>
-     <object class="software_masters.business_planner.TemplateSection" id="TemplateSection3">
+     <object class="software_masters.business_planner.TemplateSection" id="TemplateSection2">
       <void class="software_masters.business_planner.TemplateSection" method="getField">
        <string>category</string>
        <void method="set">
-        <object idref="TemplateSection3"/>
+        <object idref="TemplateSection2"/>
         <string>Objectives</string>
+       </void>
+      </void>
+      <void class="software_masters.business_planner.TemplateSection" method="getField">
+       <string>name</string>
+       <void method="set">
+        <object idref="TemplateSection2"/>
+        <string>mission2</string>
        </void>
       </void>
       <void class="software_masters.business_planner.TemplateSection" method="getField">
        <string>parent</string>
        <void method="set">
-        <object idref="TemplateSection3"/>
-        <object class="software_masters.business_planner.TemplateSection" id="TemplateSection4">
+        <object idref="TemplateSection2"/>
+        <object class="software_masters.business_planner.TemplateSection" id="TemplateSection3">
          <void class="software_masters.business_planner.TemplateSection" method="getField">
           <string>category</string>
           <void method="set">
-           <object idref="TemplateSection4"/>
-           <string>Objectives</string>
+           <object idref="TemplateSection3"/>
+           <string>Mission</string>
+          </void>
+         </void>
+         <void class="software_masters.business_planner.TemplateSection" method="getField">
+          <string>name</string>
+          <void method="set">
+           <object idref="TemplateSection3"/>
+           <string>Mission</string>
           </void>
          </void>
          <void class="software_masters.business_planner.TemplateSection" method="getField">
           <string>parent</string>
           <void method="set">
-           <object idref="TemplateSection4"/>
-           <object idref="TemplateSection1"/>
+           <object idref="TemplateSection3"/>
+           <object idref="TemplateSection0"/>
+          </void>
+         </void>
+         <void class="software_masters.business_planner.TemplateSection" method="getField">
+          <string>canCopy</string>
+          <void method="set">
+           <object idref="TemplateSection3"/>
+           <boolean>false</boolean>
           </void>
          </void>
         </object>
@@ -323,6 +324,65 @@
     </void>
    </void>
   </object>
+  <string>Strategies</string>
+ </void>
+</void>
+<void class="software_masters.business_planner.TemplateSection" method="getField">
+ <string>category</string>
+ <void method="set">
+  <object class="software_masters.business_planner.TemplateSection" id="TemplateSection4">
+   <void class="software_masters.business_planner.TemplateSection" method="getField">
+    <string>parent</string>
+    <void method="set">
+     <object idref="TemplateSection4"/>
+     <object class="software_masters.business_planner.TemplateSection" id="TemplateSection5">
+      <void class="software_masters.business_planner.TemplateSection" method="getField">
+       <string>category</string>
+       <void method="set">
+        <object idref="TemplateSection5"/>
+        <string>Strategies</string>
+       </void>
+      </void>
+      <void class="software_masters.business_planner.TemplateSection" method="getField">
+       <string>parent</string>
+       <void method="set">
+        <object idref="TemplateSection5"/>
+        <object class="software_masters.business_planner.TemplateSection" id="TemplateSection6">
+         <void class="software_masters.business_planner.TemplateSection" method="getField">
+          <string>category</string>
+          <void method="set">
+           <object idref="TemplateSection6"/>
+           <string>Objectives</string>
+          </void>
+         </void>
+         <void class="software_masters.business_planner.TemplateSection" method="getField">
+          <string>name</string>
+          <void method="set">
+           <object idref="TemplateSection6"/>
+           <string>Mission2</string>
+          </void>
+         </void>
+         <void class="software_masters.business_planner.TemplateSection" method="getField">
+          <string>parent</string>
+          <void method="set">
+           <object idref="TemplateSection6"/>
+           <object idref="TemplateSection2"/>
+          </void>
+         </void>
+        </object>
+       </void>
+      </void>
+     </object>
+    </void>
+   </void>
+  </object>
+  <string>Action Plans</string>
+ </void>
+</void>
+<void class="software_masters.business_planner.TemplateSection" id="Field0" method="getField">
+ <string>contents</string>
+ <void id="ArrayList0" method="get">
+  <object idref="TemplateSection3"/>
   <void method="add">
    <object class="software_masters.business_planner.Text"/>
   </void>
@@ -330,11 +390,11 @@
 </void>
 <void idref="ArrayList0"/>
 <void class="software_masters.business_planner.TemplateSection" id="Field1" method="getField">
- <string>contents</string>
+ <string>children</string>
  <void id="ArrayList1" method="get">
-  <object idref="TemplateSection1"/>
+  <object idref="TemplateSection0"/>
   <void method="add">
-   <object class="software_masters.business_planner.Text"/>
+   <object idref="TemplateSection3"/>
   </void>
  </void>
 </void>
@@ -342,22 +402,7 @@
 <void class="software_masters.business_planner.TemplateSection" id="Field2" method="getField">
  <string>contents</string>
  <void id="ArrayList2" method="get">
-  <object class="software_masters.business_planner.TemplateSection" id="TemplateSection5">
-   <void class="software_masters.business_planner.TemplateSection" method="getField">
-    <string>category</string>
-    <void method="set">
-     <object idref="TemplateSection5"/>
-     <string>Action Plans</string>
-    </void>
-   </void>
-   <void class="software_masters.business_planner.TemplateSection" method="getField">
-    <string>parent</string>
-    <void method="set">
-     <object idref="TemplateSection5"/>
-     <object idref="TemplateSection2"/>
-    </void>
-   </void>
-  </object>
+  <object idref="TemplateSection5"/>
   <void method="add">
    <object class="software_masters.business_planner.Text"/>
   </void>
@@ -367,37 +412,7 @@
 <void class="software_masters.business_planner.TemplateSection" id="Field3" method="getField">
  <string>contents</string>
  <void id="ArrayList3" method="get">
-  <object class="software_masters.business_planner.TemplateSection" id="TemplateSection6">
-   <void class="software_masters.business_planner.TemplateSection" method="getField">
-    <string>category</string>
-    <void method="set">
-     <object idref="TemplateSection6"/>
-     <string>Action Plans</string>
-    </void>
-   </void>
-   <void class="software_masters.business_planner.TemplateSection" method="getField">
-    <string>parent</string>
-    <void method="set">
-     <object idref="TemplateSection6"/>
-     <object class="software_masters.business_planner.TemplateSection" id="TemplateSection7">
-      <void class="software_masters.business_planner.TemplateSection" method="getField">
-       <string>category</string>
-       <void method="set">
-        <object idref="TemplateSection7"/>
-        <string>Strategies</string>
-       </void>
-      </void>
-      <void class="software_masters.business_planner.TemplateSection" method="getField">
-       <string>parent</string>
-       <void method="set">
-        <object idref="TemplateSection7"/>
-        <object idref="TemplateSection4"/>
-       </void>
-      </void>
-     </object>
-    </void>
-   </void>
-  </object>
+  <object idref="TemplateSection6"/>
   <void method="add">
    <object class="software_masters.business_planner.Text"/>
   </void>
@@ -407,9 +422,24 @@
 <void class="software_masters.business_planner.TemplateSection" id="Field4" method="getField">
  <string>children</string>
  <void id="ArrayList4" method="get">
-  <object idref="TemplateSection0"/>
+  <object idref="TemplateSection1"/>
   <void method="add">
-   <object idref="TemplateSection1"/>
+   <object class="software_masters.business_planner.TemplateSection" id="TemplateSection7">
+    <void class="software_masters.business_planner.TemplateSection" method="getField">
+     <string>category</string>
+     <void method="set">
+      <object idref="TemplateSection7"/>
+      <string>Action Plans</string>
+     </void>
+    </void>
+    <void class="software_masters.business_planner.TemplateSection" method="getField">
+     <string>parent</string>
+     <void method="set">
+      <object idref="TemplateSection7"/>
+      <object idref="TemplateSection1"/>
+     </void>
+    </void>
+   </object>
   </void>
  </void>
 </void>
@@ -425,11 +455,14 @@
 </void>
 <void idref="ArrayList5"/>
 <void class="software_masters.business_planner.TemplateSection" id="Field6" method="getField">
- <string>contents</string>
+ <string>children</string>
  <void id="ArrayList6" method="get">
-  <object idref="TemplateSection7"/>
+  <object idref="TemplateSection3"/>
   <void method="add">
-   <object class="software_masters.business_planner.Text"/>
+   <object idref="TemplateSection6"/>
+  </void>
+  <void method="add">
+   <object idref="TemplateSection2"/>
   </void>
  </void>
 </void>
@@ -437,7 +470,7 @@
 <void class="software_masters.business_planner.TemplateSection" id="Field7" method="getField">
  <string>children</string>
  <void id="ArrayList7" method="get">
-  <object idref="TemplateSection2"/>
+  <object idref="TemplateSection6"/>
   <void method="add">
    <object idref="TemplateSection5"/>
   </void>
@@ -447,7 +480,7 @@
 <void class="software_masters.business_planner.TemplateSection" id="Field8" method="getField">
  <string>contents</string>
  <void id="ArrayList8" method="get">
-  <object idref="TemplateSection3"/>
+  <object idref="TemplateSection1"/>
   <void method="add">
    <object class="software_masters.business_planner.Text"/>
   </void>
@@ -457,52 +490,49 @@
 <void class="software_masters.business_planner.TemplateSection" id="Field9" method="getField">
  <string>children</string>
  <void id="ArrayList9" method="get">
-  <object idref="TemplateSection7"/>
+  <object idref="TemplateSection2"/>
   <void method="add">
-   <object idref="TemplateSection6"/>
+   <object idref="TemplateSection1"/>
   </void>
  </void>
 </void>
 <void idref="ArrayList9"/>
 <void class="software_masters.business_planner.TemplateSection" id="Field10" method="getField">
- <string>children</string>
+ <string>contents</string>
  <void id="ArrayList10" method="get">
-  <object idref="TemplateSection3"/>
+  <object idref="TemplateSection4"/>
   <void method="add">
-   <object idref="TemplateSection2"/>
+   <object class="software_masters.business_planner.Text"/>
   </void>
  </void>
 </void>
 <void idref="ArrayList10"/>
 <void class="software_masters.business_planner.TemplateSection" id="Field11" method="getField">
- <string>children</string>
+ <string>contents</string>
  <void id="ArrayList11" method="get">
-  <object idref="TemplateSection1"/>
+  <object idref="TemplateSection7"/>
   <void method="add">
-   <object idref="TemplateSection3"/>
-  </void>
-  <void method="add">
-   <object idref="TemplateSection4"/>
+   <object class="software_masters.business_planner.Text"/>
   </void>
  </void>
 </void>
 <void idref="ArrayList11"/>
 <void class="software_masters.business_planner.TemplateSection" id="Field12" method="getField">
- <string>children</string>
+ <string>contents</string>
  <void id="ArrayList12" method="get">
-  <object idref="TemplateSection4"/>
+  <object idref="TemplateSection2"/>
   <void method="add">
-   <object idref="TemplateSection7"/>
+   <object class="software_masters.business_planner.Text"/>
   </void>
  </void>
 </void>
 <void idref="ArrayList12"/>
 <void class="software_masters.business_planner.TemplateSection" id="Field13" method="getField">
- <string>contents</string>
+ <string>children</string>
  <void id="ArrayList13" method="get">
-  <object idref="TemplateSection4"/>
+  <object idref="TemplateSection5"/>
   <void method="add">
-   <object class="software_masters.business_planner.Text"/>
+   <object idref="TemplateSection4"/>
   </void>
  </void>
 </void>

@@ -52,7 +52,7 @@ public class ServerClientTest extends TestCase
         
         
         reg = LocateRegistry.createRegistry(1099);
-        //fail( "My method didn't throw when I expected it to" );
+        
         reg.rebind("testServer", serv);
         prox = (Server) reg.lookup("testServer");
         System.out.println("server ready");
@@ -196,18 +196,20 @@ public class ServerClientTest extends TestCase
 		
 		joe.changeEdit();
 		joe.getEditable().setCurrent(joe.getEditable().getCurrent().getChild(0).getChild(0));
-		joe.getEditable().addBranch();
+		TemplateSection copy = joe.getEditable().addBranch();
+		copy.setName("Mission2");
+		joe.getEditable().getCurrent().setName("mission2");
+		System.out.println(copy.getName());
 		
+		Assert.assertEquals(joe.getEditable().getCurrent().getParent().getChildren().size(), 2);
 		
-		Assert.assertEquals(joe.getEditable().getCurrent().getChildren().size(), 2);
-		
-		joe.copyPlan("myplan2");
-		
-		joe.getPlan("myplan2");
-		
-		Assert.assertEquals(joe.getEditable().getCurrent().getChildren().size(), 2);
+	
 		
 		joe.savePlan();
+		
+		
+		
+
 		
 		
 		
