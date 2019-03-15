@@ -421,14 +421,14 @@ public class Server implements ServerInterface, Serializable
 			 person = users.get(username);
 		}
 		
-		Template temp = plan.getUserTemplate();
+		BusinessPlanner temp = plan;
 		
 		
 		String deptName = person.getDeptName();
 		
 		Department department = getDept(deptName);
 		
-		Template newTemp = temp;
+		Template newTemp = temp.getUserTemplate();
 		
 		newTemp.setUserTemplateName(name);
 		

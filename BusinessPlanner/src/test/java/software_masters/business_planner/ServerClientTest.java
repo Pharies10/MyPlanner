@@ -196,20 +196,30 @@ public class ServerClientTest extends TestCase
 		
 		joe.changeEdit();
 		joe.getEditable().setCurrent(joe.getEditable().getCurrent().getChild(0).getChild(0));
+		TemplateSection copy2 = joe.getEditable().getCurrent();		
+		System.out.println(copy2.getCategory());
 		TemplateSection copy = joe.getEditable().addBranch();
-		copy.setName("Mission2");
-		joe.getEditable().getCurrent().setName("mission2");
-		System.out.println(copy.getName());
+		copy.setName("obj2");
+		joe.getEditable().getCurrent().setName("obj2");
+		
 		
 		Assert.assertEquals(joe.getEditable().getCurrent().getParent().getChildren().size(), 2);
 		
+		joe.getEditable().setCurrent(joe.getEditable().getCurrent().getParent().getParent());
+		
+		joe.copyPlan("a");
+		
+		
 	
 		
+		
+		joe.getPlan("a");
+		
+		copy2 = joe.getEditable().getCurrent().getChild(0).getChild(0);
+	
+		Assert.assertEquals(copy2.getCategory(), "Objectives");
+		
 		joe.savePlan();
-		
-		
-		
-
 		
 		
 		
