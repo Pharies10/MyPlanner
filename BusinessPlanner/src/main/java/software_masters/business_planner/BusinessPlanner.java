@@ -56,10 +56,6 @@ class BusinessPlanner implements Serializable
 	{
 		developerTemplate = Template.loadDeveloperTemplate(templateName);
 		this.userTemplate = usertemplate;
-				
-				
-		// Template.loadDeveloperTemplate(templateName);
-		//userTemplate.setUserTemplateName(userTemplateName);
 		this.current = userTemplate.getRoot();
 	}
 

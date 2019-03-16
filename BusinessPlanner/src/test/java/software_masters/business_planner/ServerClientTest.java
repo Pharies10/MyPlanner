@@ -187,9 +187,7 @@ public class ServerClientTest extends TestCase
 		joe.getEditable().setCurrent(joe.getEditable().getCurrent().getChild(0).getChild(0));
 		joe.editable.addBranch();
 		
-		// save / copy / update unavaiable until
-		//java.lang.IllegalAccessException: class sun.reflect.misc.Trampoline cannot access a member of class software_masters.business_planner.BusinessPlanner with modifiers "public"
-		// is figured out
+		// test addition / copy / save / get
 		joe.savePlan();
 		
 		joe.getPlan("myPlan");
