@@ -18,7 +18,7 @@ import java.io.Serializable;
  * @since 2019-02-23
  */
 
-public class Template 
+public class Template implements Serializable
 {
 	private String developerTemplateName;
 	private String userTemplateName;
@@ -145,6 +145,7 @@ public class Template
 	public static Template loadDeveloperTemplate(String name)
 	{
 		return Template.load(name + ".dev");
+		
 	}
 
 	/**
@@ -170,6 +171,19 @@ public class Template
 		try
 		{
 			decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(filepath)));
+		} catch (FileNotFoundException e)
+		{
+			System.out.println("ERROR: File " + filepath + " not found");
+		}
+		return (Template) decoder.readObject();
+	}
+
+	public static Template userLoad(String filepath)
+	{
+		XMLDecoder decoder = null;
+		try
+		{
+			decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(filepath + ".user")));
 		} catch (FileNotFoundException e)
 		{
 			System.out.println("ERROR: File " + filepath + " not found");

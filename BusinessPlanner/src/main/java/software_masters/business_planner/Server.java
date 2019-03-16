@@ -300,7 +300,7 @@ public class Server implements ServerInterface, Serializable
 		
 		Template temp = department.getPlan(planName);
 		
-		BusinessPlanner plan = new BusinessPlanner(temp.getDeveloperTemplateName(), temp.getUserTemplateName());
+		BusinessPlanner plan = new BusinessPlanner(temp.getDeveloperTemplateName(), temp, null);
 		
 		boolean edit = temp.isEdit();
 		
@@ -345,6 +345,9 @@ public class Server implements ServerInterface, Serializable
 		}
 		
 		Template planner = new Template(dev, user, null, access);
+		planner = Template.loadDeveloperTemplate(dev);
+		planner.setEdit(access);
+		planner.setUserTemplateName(user);
 		
 		String deptName = person.getDeptName();
 		
@@ -421,16 +424,18 @@ public class Server implements ServerInterface, Serializable
 			 person = users.get(username);
 		}
 		
-		BusinessPlanner temp = plan;
+		
 		
 		
 		String deptName = person.getDeptName();
 		
 		Department department = getDept(deptName);
 		
-		Template newTemp = temp.getUserTemplate();
-		
+		plan.getUserTemplate().save();
+		Template newTemp = new Template();
+		newTemp = Template.userLoad(plan.getUserTemplate().getUserTemplateName());
 		newTemp.setUserTemplateName(name);
+		
 		
 		
 		

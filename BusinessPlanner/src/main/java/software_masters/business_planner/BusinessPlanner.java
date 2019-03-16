@@ -32,7 +32,7 @@ class BusinessPlanner implements Serializable
 	
 	public BusinessPlanner()
 	{
-		this("VMOSA", null);
+		this("VMOSA", null, null);
 	}
 	
 	
@@ -40,22 +40,36 @@ class BusinessPlanner implements Serializable
 	 * @param userTemplate
 	 * @param developerTemplate
 	 */
-	public BusinessPlanner(String developerTemplate, String userTemplate)
+	public BusinessPlanner(String developerTemplate, Template userTemplate, TemplateSection something)
 	{
 		chooseTemplate(developerTemplate, userTemplate);
 		
 	}
 	
+	public BusinessPlanner(String developerTemplate, String userTemplate)
+	{
+		createTemplate(developerTemplate, userTemplate);
+		
+	}
+	
+	private void chooseTemplate(String templateName, Template usertemplate)
+	{
+		developerTemplate = Template.loadDeveloperTemplate(templateName);
+		this.userTemplate = usertemplate;
+				
+				
+		// Template.loadDeveloperTemplate(templateName);
+		//userTemplate.setUserTemplateName(userTemplateName);
+		this.current = userTemplate.getRoot();
+	}
 
-	private void chooseTemplate(String templateName, String userTemplateName)
+	public void createTemplate(String templateName, String userTemplateName)
 	{
 		developerTemplate = Template.loadDeveloperTemplate(templateName);
 		userTemplate = Template.loadDeveloperTemplate(templateName);
 		userTemplate.setUserTemplateName(userTemplateName);
 		current = userTemplate.getRoot();
 	}
-
-
 
 	/**
 	 * Sets developerTemplate to the chosen XML file, clones developerTemplate to
@@ -106,7 +120,7 @@ class BusinessPlanner implements Serializable
 		{
 			
 			current.getParent().addChild(copy);
-			copy.setParent(current);
+			copy.setParent(current.getParent());
 			return copy;
 		}
 		return null;

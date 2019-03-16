@@ -181,8 +181,10 @@ public class ServerClientTest extends TestCase
 		joe.getPlan("myPlan");
 		
 		Assert.assertEquals(joe.editable.getUserTemplate().getUserTemplateName(), "myPlan");
-	
-		joe.editable.setCurrent(joe.editable.getCurrent().getChild(0).getChild(0));
+		System.out.println(joe.editable.getUserTemplate().getUserTemplateName());
+		
+		System.out.println(joe.editable.getCurrent().getCategory());
+		joe.getEditable().setCurrent(joe.getEditable().getCurrent().getChild(0).getChild(0));
 		joe.editable.addBranch();
 		
 		// save / copy / update unavaiable until
@@ -196,28 +198,34 @@ public class ServerClientTest extends TestCase
 		
 		joe.changeEdit();
 		joe.getEditable().setCurrent(joe.getEditable().getCurrent().getChild(0).getChild(0));
-		TemplateSection copy2 = joe.getEditable().getCurrent();		
-		System.out.println(copy2.getCategory());
-		TemplateSection copy = joe.getEditable().addBranch();
-		copy.setName("obj2");
-		joe.getEditable().getCurrent().setName("obj2");
-		
-		
+		TemplateSection copy2 = joe.getEditable().getCurrent();	
 		Assert.assertEquals(joe.getEditable().getCurrent().getParent().getChildren().size(), 2);
 		
-		joe.getEditable().setCurrent(joe.getEditable().getCurrent().getParent().getParent());
+		TemplateSection copy = joe.getEditable().addBranch();
+		
+
+
+		
+		Assert.assertEquals(joe.getEditable().getCurrent().getParent().getChildren().size(), 3);
+		
+		
 		
 		joe.copyPlan("a");
 		
 		
-	
+		
 		
 		
 		joe.getPlan("a");
 		
-		copy2 = joe.getEditable().getCurrent().getChild(0).getChild(0);
+		copy2 = joe.getEditable().getCurrent().getChild(0).getChild(1);
 	
+		
 		Assert.assertEquals(copy2.getCategory(), "Objectives");
+		System.out.println("hello");
+		joe.getEditable().setCurrent(joe.getEditable().getCurrent().getChild(0).getChild(1));
+		System.out.println(joe.getEditable().getCurrent().getCategory());
+		Assert.assertEquals(joe.getEditable().getCurrent().getParent().getChildren().size(), 3);
 		
 		joe.savePlan();
 		

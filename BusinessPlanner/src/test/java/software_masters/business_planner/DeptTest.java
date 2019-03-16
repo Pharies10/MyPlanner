@@ -50,7 +50,7 @@ public class DeptTest extends TestCase
 		Template test3 = dept.getPlan("test3");
 		Assert.assertEquals(test3, planner3);
 		
-		BusinessPlanner plan = new BusinessPlanner(test1.getDeveloperTemplateName(), test2.getUserTemplateName());
+		BusinessPlanner plan = new BusinessPlanner(test1.getDeveloperTemplateName(), test2, null);
 		
 		plan.setCurrent(plan.getCurrent().getChild(0).getChild(0)); // objective level
 		
