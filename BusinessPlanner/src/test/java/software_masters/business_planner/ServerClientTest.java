@@ -247,6 +247,7 @@ public class ServerClientTest extends TestCase
 		catch (IllegalArgumentException e)
 		{
 			  e.getMessage();
+			  
 		}
 		
 		
